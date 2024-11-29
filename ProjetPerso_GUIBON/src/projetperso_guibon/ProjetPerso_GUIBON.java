@@ -15,7 +15,27 @@ public class ProjetPerso_GUIBON {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+
         
+    } 
+    public boolean parc (int a, int b, int c){
+            
+        GrilleDeJeu grille = new GrilleDeJeu(8,8,2);
+        boolean u =true;
+        int n = 0;
+        for (int i = 0; i<8; i++){
+            
+            for (int j=0; j<8; j++){
+                u = grille.getPresenceBombe(i,j);
+                if (u==false){
+                    n=n+1;
+                    return u;                 
+                }
+            }
+        }
+        if (n==0){
+            return u;
+        }
+        return true;
     }
-    
 }
