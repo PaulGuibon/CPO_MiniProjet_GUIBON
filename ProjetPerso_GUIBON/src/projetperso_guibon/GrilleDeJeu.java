@@ -119,4 +119,36 @@ public class GrilleDeJeu {
         }
         return true;
     }
+    @Override
+public String toString() {
+    StringBuilder builder = new StringBuilder();
+
+    // Ajouter une bordure supérieure avec les indices des colonnes
+    builder.append("    ");
+    for (int col = 0; col < nbColonnes; col++) {
+        builder.append(col).append(" ");
+    }
+    builder.append("\n");
+
+    // Ajouter une ligne de séparation
+    builder.append("   ");
+    for (int col = 0; col < nbColonnes; col++) {
+        builder.append("--");
+    }
+    builder.append("\n");
+
+    // Parcourir la matrice pour lire l'état de chaque cellule
+    for (int i = 0; i < nbLignes; i++) {
+        // Ajouter l'indice de la ligne
+        builder.append(i).append(" | ");
+        for (int j = 0; j < nbColonnes; j++) {
+            // Appeler la méthode toString() de chaque cellule
+            builder.append(matriceCellules[i][j].toString()).append(" ");
+        }
+        builder.append("\n");
+    }
+
+    return builder.toString();
+}
+
 }

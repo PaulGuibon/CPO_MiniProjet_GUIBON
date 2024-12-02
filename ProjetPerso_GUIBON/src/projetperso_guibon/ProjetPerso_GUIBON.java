@@ -14,10 +14,16 @@ public class ProjetPerso_GUIBON {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        // Crée une nouvelle instance de Partie
+        Partie partie = new Partie();
 
-        
-    } 
+        // Configure une partie avec une grille de 5x5, 5 bombes, et 3 vies
+        partie.initialiserPartie(5, 5, 5, 3);
+
+        // Démarre la partie
+        partie.demarrerPartie();
+    }
+           
     public boolean parc (int a, int b, int c){
             
         GrilleDeJeu grille = new GrilleDeJeu(8,8,2);
