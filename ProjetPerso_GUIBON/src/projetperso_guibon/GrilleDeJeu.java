@@ -108,6 +108,12 @@ public class GrilleDeJeu {
     public boolean getPresenceBombe(int i, int j) {
         return matriceCellules[i][j].getPresenceBombe();
     }
+    public Cellule getCellule(int ligne, int colonne) {
+    if (ligne >= 0 && ligne < nbLignes && colonne >= 0 && colonne < nbColonnes) {
+        return matriceCellules[ligne][colonne];
+    }
+    return null; // ou lever une exception si vous préférez
+}
 
     public boolean toutesCellulesRevelees() {
         for (int i = 0; i < nbLignes; i++) {
@@ -120,6 +126,7 @@ public class GrilleDeJeu {
         return true;
     }
     @Override
+    
 public String toString() {
     StringBuilder builder = new StringBuilder();
 

@@ -14,19 +14,15 @@ public class ProjetPerso_GUIBON {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // Crée une nouvelle instance de Partie
         Partie partie = new Partie();
-
-        // Configure une partie avec une grille de 5x5, 5 bombes, et 3 vies
-        partie.initialiserPartie(5, 5, 5, 3);
-
-        // Démarre la partie
+        
+        partie.initialiserPartie(20, 20, 16, 1);
         partie.demarrerPartie();
     }
            
     public boolean parc (int a, int b, int c){
             
-        GrilleDeJeu grille = new GrilleDeJeu(8,8,2);
+        GrilleDeJeu grille = new GrilleDeJeu(a,b,c);
         boolean u =true;
         int n = 0;
         for (int i = 0; i<8; i++){
