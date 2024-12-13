@@ -68,7 +68,7 @@ public class Partie {
         while (enCours) {
             System.out.println("Grille actuelle : ");
             System.out.println(grille);
-            System.out.println("Veuillez entrer les coordonnées de la cellule à révéler (ligne et colonne) : ");
+            System.out.println("Veuillez entrer les coordonnees de la cellule a reveler (ligne et colonne) : ");
             System.out.print("Ligne : ");
             int ligne = scanner.nextInt();
             System.out.print("Colonne : ");
