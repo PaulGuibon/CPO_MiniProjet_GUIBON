@@ -58,7 +58,7 @@ public class Demineur_Guibon_Graphique extends javax.swing.JFrame {
         for (int i = 0; i < NB_LIGNES; i++) {
             for (int j = 0; j < NB_COLONNES; j++) {
                 boutons[i][j] = new JButton();
-                boutons[i][j].setFont(new Font("Arial", Font.BOLD, 14));
+                boutons[i][j].setFont(new Font("Arial", Font.BOLD, 25)); // Augmenter la taille de la police
                 int x = i;
                 int y = j;
                 boutons[i][j].addActionListener(e -> revelerCellule(x, y));
@@ -91,49 +91,51 @@ public class Demineur_Guibon_Graphique extends javax.swing.JFrame {
 }
 
 
-    private void revelerCellule(int x, int y) {
-        if (devoilee[x][y]) {
-            return;
-        }
+private void revelerCellule(int x, int y) {
+    Font petitePolice = new Font("Arial", Font.BOLD, 10);  // Police plus 
+    if (devoilee[x][y]) {
+        return;
+    }
 
-        devoilee[x][y] = true;
-        boutons[x][y].setEnabled(false);
+    devoilee[x][y] = true;
+    boutons[x][y].setEnabled(false);  // Désactive le bouton
 
-        if (estBombe[x][y]) {
-            boutons[x][y].setText("B");
-            boutons[x][y].setBackground(Color.RED);
-            afficherMessagePerdu();
-        } 
-        else {
-            int bombesAdj = bombesAdjacentes[x][y];
+    if (estBombe[x][y]) {
+        boutons[x][y].setText("B");  // Affiche "B" si c'est une bombe
+        boutons[x][y].setBackground(Color.RED);  // Fond rouge pour la bombe
+        boutons[x][y].setFont(petitePolice); 
+        afficherMessagePerdu();  // Appelle la méthode de fin de jeu
+    } else {
+        int bombesAdj = bombesAdjacentes[x][y];  // Nombre de bombes adjacentes
         
         if (bombesAdj == 0) {
+            boutons[x][y].setText("");  // Vide la cellule si pas de bombes adjacentes
+            boutons[x][y].setBackground(Color.GRAY);  // Change la couleur de fond à gris clair
+
+            // Révéler les cellules adjacentes si aucune bombe adjacente
             for (int dx = -1; dx <= 1; dx++) {
-            for (int dy = -1; dy <= 1; dy++) {
-                int nx = x + dx;
-                int ny = y + dy;
-                if (nx >= 0 && nx < NB_LIGNES && ny >= 0 && ny < NB_COLONNES) {
-                    revelerCellule(nx, ny);
+                for (int dy = -1; dy <= 1; dy++) {
+                    int nx = x + dx;
+                    int ny = y + dy;
+                    if (nx >= 0 && nx < NB_LIGNES && ny >= 0 && ny < NB_COLONNES && !devoilee[nx][ny]) {
+                        revelerCellule(nx, ny);  // Récursion pour révéler les cellules adjacentes
                     }
-                }   
+                }
             }
-        }
-        else if (bombesAdj == 1){
-            boutons[x][y].setText( "1");
-        }
-        else if (bombesAdj == 2){
-            boutons[x][y].setText( "2");
-        }
-        else if (bombesAdj == 3){
-            boutons[x][y].setText( "3");
-        }
-}
-
-
-        if (verifierVictoire()) {
-            afficherMessageGagne();
+        } else {
+            // Affiche le nombre de bombes adjacentes (1 à 3)
+            boutons[x][y].setText(Integer.toString(bombesAdj));
+            boutons[x][y].setBackground(Color.ORANGE);  // Fond gris clair pour les autres cellules
+            boutons[x][y].setFont(petitePolice); 
         }
     }
+
+    // Vérifier si la partie est gagnée après avoir révélé une cellule
+    if (verifierVictoire()) {
+        afficherMessageGagne();
+    }
+}
+
 
     private boolean verifierVictoire() {
         for (int i = 0; i < NB_LIGNES; i++) {
