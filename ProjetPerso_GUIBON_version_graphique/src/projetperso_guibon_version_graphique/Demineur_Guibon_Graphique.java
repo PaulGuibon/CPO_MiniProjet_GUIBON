@@ -110,24 +110,9 @@ public class Demineur_Guibon_Graphique extends javax.swing.JFrame {
         }
         return count;
     }
-    private int obtenirPolice() {
-    int taillePolice;
-
-    if (NB_LIGNES == 10) {
-        taillePolice = 10; 
-    } else if (NB_LIGNES == 15) {
-        taillePolice = 3; 
-    } else if (NB_LIGNES == 20) {
-        taillePolice = 1; 
-    } else {
-        taillePolice = 1; 
-    }
-    return taillePolice;
-}
 
     private void revelerCellule(int x, int y) {
-        int taillePolice = obtenirPolice();
-        Font petitePolice = new Font("Arial", Font.BOLD, taillePolice);  // Police plus petite
+        Font petitePolice = new Font("Arial", Font.BOLD, 10);  // Police plus petite
         if (devoilee[x][y]) {
             return;
         }
